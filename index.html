@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Video Unlock - Download Page</title>
+  <title>Download Page</title>
   <style>
     :root {
       --primary: #fc38ae;
@@ -27,7 +27,6 @@
       margin: 0 auto;
     }
 
-    /* Top ad container */
     .top-ad-container {
       text-align: center;
       margin: 0 auto 25px;
@@ -37,21 +36,17 @@
       margin: 0 auto;
     }
 
-    /* Default: hide both banners */
     .ad-728x90 { display: none; }
     .ad-320x50 { display: none; }
 
-    /* Desktop & Tablet (≥ 768px) → show 728x90 */
     @media (min-width: 768px) {
       .ad-728x90 { display: block; }
     }
 
-    /* Mobile only (< 768px) → show 320x50 */
     @media (max-width: 767px) {
       .ad-320x50 { display: block; }
     }
 
-    /* Bottom vertical native ads (mobile + tablet - ≤1024px) */
     .bottom-vertical-ads {
       display: none;
       flex-direction: column;
@@ -70,7 +65,6 @@
       .bottom-vertical-ads { display: flex; }
     }
 
-    /* Rest of your styles */
     h1 { text-align:center; color:var(--primary); margin:20px 0 0 0; font-size: clamp(1.8rem,6vw,2.4rem); }
     #title-display { text-align:center; font-size:clamp(1.3rem,5vw,1.7rem); margin:20px 0 0 0; color:#fff; font-weight:500; min-height:2.5em; }
     #how-to-section { margin:30px 0 40px; text-align:center; }
@@ -150,7 +144,6 @@
 
     <!-- Top banner ad area -->
     <div class="top-ad-container">
-      <!-- Desktop & Tablet: 728x90 -->
       <div class="ad-728x90">
         <script>
           atOptions = {
@@ -164,7 +157,7 @@
         <script src="https://exasperatebubblyorthodox.com/001a3d3ef6e93c6a44d0b84604049a79/invoke.js"></script>
       </div>
 
-      <!-- Mobile: 320x50 -->
+      <!-- Mobile -->
       <div class="ad-320x50">
         <script>
           atOptions = {
@@ -178,10 +171,7 @@
         <script src="https://exasperatebubblyorthodox.com/f86cec05dfb3d2e32c0ae6d225f9e2f3/invoke.js"></script>
       </div>
     </div>
-
-    <!-- <h1> වීඩියෝව Unlock කරගන්න</h1> -->
-
-    
+   
 
     <div id="how-to-section">
       <h2 id="how-to-heading">වීඩියෝ Download කරන්නෙ කොහොමද?</h2>
@@ -189,10 +179,10 @@
         <ol>
           <li><strong>පියවර 1</strong> Button එක Click කරන්න.</li>
           <li><strong>පියවර 2</strong> Button එක Click කරන්න.</li>
-          <li>පියවර දෙකම සම්පූර්ණ නම් <strong>Download Button එක Unlock වේ.</li>
+          <li>පියවර දෙකම සම්පූර්ණ නම් <strong>Download Now!</strong> Button එක Unlock වේ.</li>
         </ol>
         <ul>
-          <li>සෑම පියවරකදිම <span class="highlight">අවම තත්පර 5ක් රැඳී සිටීම අනිවාර්යයි</span>.</li>
+          <li>සෑම පියවරකදිම <span class="highlight">අවම තත්පර 8ක් රැඳී සිටීම අනිවාර්යයි.</span>.</li>
           <li><span class="highlight">AdBlock Disable</span> කිරීම අනිවාර්යයි.</li>
           <li>Popup window එකක් show උනොත් අනිවාර්යයෙන් <span class="highlight">Allow</span> / <span class="highlight">Always Show</span> කරන්න.</li>
         </ul> 
@@ -214,7 +204,7 @@
       </button>
     </div>
 
-    <!-- Bottom vertical native ads (mobile + tablet) -->
+    <!-- native ads -->
     <div class="bottom-vertical-ads">
       <div class="ad-item">
         <script async="async" data-cfasync="false" src="https://exasperatebubblyorthodox.com/e288e27a370c8e9e555ae2822c3f8be1/invoke.js"></script>
@@ -224,22 +214,20 @@
 
     <div id="error-message">
       <h2>⚠️ Video Not Found</h2>
-      <p id="error-text">වැරදි ID එකක් හෝ URL එකකින් ආවා වගේ පේනවා.</p>
+      <p id="error-text">Wrong ID or URL</p>
     </div>
 
     <div id="adblock-warning">
-      <h2>⚠️ Ad Blocker හෝ Privacy Protection සක්‍රියයි!</h2>
-      <p>මේ page එක properly load වෙන්න නම් Ad Blocker disable කරලා refresh කරන්න.</p>
+      <h2>⚠️ Ad Blocker Detected!</h2>
+      <p>ඔබගේ Ad Blocker එක disable කර page එක refresh කරන්න.</p>
       <button onclick="location.reload()">Refresh කරන්න</button>
     </div>
   </div>
 
   <script>
-    // ──── Configuration ────
     const JSON_FILE = 'data.json';
-    const requiredSeconds = 5;
+    const requiredSeconds = 8;
 
-    // ──── Global state ────
     let videoData = null;
     let clickTime = 0;
     let activeBtnId = null;
@@ -248,30 +236,29 @@
     let timerInterval = null;
 
     const part1 = "ඔයා හිටියේ තත්පර ";
-    const part2 = " යි!\nකරුණාකර තත්පර 5ක් රැඳිලා සිටින්න.";
+    const part2 = " යි!\nකරුණාකර තත්පර 8ක් රැඳී සිටින්න.";
     const popupErrorMsg = "⚠️ Popup Blocked!\n\nBrowser settings → Pop-ups and redirects → Allow කරලා ආයෙ උත්සාහ කරන්න.";
 
-    // ──── Load JSON & find by ID ────
     async function loadAndFindVideo() {
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get('id');
 
       if (!id) {
-        showError("ID parameter එක URL එකේ නැහැ (උදා: ?id=123vPs)");
+        showError("");
         return;
       }
 
       try {
         const response = await fetch(JSON_FILE);
-        if (!response.ok) throw new Error("JSON file load වෙන්නේ නැහැ");
+        if (!response.ok) throw new Error("Data file loading error");
         const data = await response.json();
 
-        if (!Array.isArray(data)) throw new Error("JSON එක array එකක් නෙමෙයි");
+        if (!Array.isArray(data)) throw new Error("");
 
         videoData = data.find(item => item.id === id);
 
         if (!videoData || !videoData.title || !videoData.download_url) {
-          showError("ID එකට අදාළ වීඩියෝව සොයාගත නොහැකි විය.");
+          showError("");
           return;
         }
 
@@ -279,7 +266,7 @@
         document.getElementById('title-display').style.color = '#ffffff';
 
       } catch (err) {
-        showError("Data load කරද්දි ගැටලුවක්: " + err.message);
+        showError("Data loading error");
       }
     }
 
@@ -291,7 +278,6 @@
       document.getElementById('title-display').innerHTML = "Error";
     }
 
-    // ──── Adblock Detection ────
     function detectAdblock(callback) {
       const bait = document.createElement('div');
       bait.innerHTML = '&nbsp;';
@@ -381,7 +367,7 @@
       if (videoData && videoData.download_url) {
         window.location.href = videoData.download_url;
       } else {
-        alert("Download link එක හොයාගන්න බැරි වුණා");
+        alert("Download link not found!");
       }
     };
 
