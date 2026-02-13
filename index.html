@@ -80,7 +80,12 @@
     #how-to-instructions ol, #how-to-instructions ul { padding-left:24px; margin:15px 0; }
     #how-to-instructions li { margin-bottom:12px; }
     #how-to-instructions .highlight { color:#ffcc00; font-weight:600; }
-    #button-container { display:flex; flex-direction:column; gap:16px; margin:30px 0; }
+    #button-container { 
+      display: none;
+      flex-direction:column; 
+      gap:16px; 
+      margin:30px 0; 
+    }
     .btn {
       height:72px;
       border:none;
@@ -158,7 +163,6 @@
         <script src="https://exasperatebubblyorthodox.com/001a3d3ef6e93c6a44d0b84604049a79/invoke.js"></script>
       </div>
 
-      <!-- Mobile -->
       <div class="ad-320x50">
         <script>
           atOptions = {
@@ -172,7 +176,6 @@
         <script src="https://exasperatebubblyorthodox.com/f86cec05dfb3d2e32c0ae6d225f9e2f3/invoke.js"></script>
       </div>
     </div>
-   
 
     <div id="how-to-section">
       <h2 id="how-to-heading">වීඩියෝ Download කරන්නෙ කොහොමද?</h2>
@@ -187,7 +190,6 @@
           <li><span class="highlight">AdBlock Disable</span> කිරීම අනිවාර්යයි.</li>
           <li>Popup window එකක් show උනොත් අනිවාර්යයෙන් <span class="highlight">Allow</span> / <span class="highlight">Always Show</span> කරන්න.</li>
         </ul> 
-        
       </div>
     </div>
 
@@ -244,6 +246,8 @@
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get('id');
 
+      document.getElementById('button-container').style.display = 'none';
+
       if (!id) {
         showError("");
         return;
@@ -254,7 +258,7 @@
         if (!response.ok) throw new Error("Data file loading error");
         const data = await response.json();
 
-        if (!Array.isArray(data)) throw new Error("");
+        if (!Array.isArray(data)) throw new Error("Invalid data format");
 
         videoData = data.find(item => item.id === id);
 
@@ -263,11 +267,13 @@
           return;
         }
 
+        // Valid data found → show buttons + title
         document.getElementById('title-display').innerHTML = `🎬 ${videoData.title}`;
         document.getElementById('title-display').style.color = '#ffffff';
+        document.getElementById('button-container').style.display = 'flex';
 
       } catch (err) {
-        showError("Data loading error");
+        showError("Data loading error: " + err.message);
       }
     }
 
@@ -297,7 +303,6 @@
       }, 800);
     }
 
-    // ──── Button logic ────
     function handleStep(key, currentId, nextId) {
       checkTimeAndUnlock(currentId, nextId, links[key]);
     }
@@ -363,7 +368,6 @@
       }
     }
 
-    // Final download
     document.getElementById('finalUnlockBtn').onclick = () => {
       if (videoData && videoData.download_url) {
         window.location.href = videoData.download_url;
@@ -372,7 +376,6 @@
       }
     };
 
-    // ──── Init ────
     window.addEventListener('load', () => {
       detectAdblock((blocked) => {
         if (blocked) {
@@ -385,7 +388,6 @@
       });
     });
 
-    // Button listeners
     document.getElementById('btn1').onclick = () => {
       if (!document.getElementById('btn1').classList.contains('disabled') &&
           !document.getElementById('btn1').classList.contains('checking')) {
@@ -400,7 +402,6 @@
       }
     };
 
-    // Original step links
     const links = {
       step1: "https://otieu.com/4/9263262",
       step2: "https://otieu.com/4/9250881"
