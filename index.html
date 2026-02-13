@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Unlock - Download Page</title>
+  <style>
+    :root {
+      --primary: #fc38ae;
+      --primary-dark: #ce4b99;
+      --danger: #e63946;
+      --bg: #0f0f1a;
+      --text: #e0e0e0;
+      --card-bg: #1a1a2e;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 15px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Top ad container */
+    .top-ad-container {
+      text-align: center;
+      margin: 0 auto 25px;
+      max-width: 100%;
+    }
+    .ad-728x90, .ad-320x50 {
+      margin: 0 auto;
+    }
+
+    /* Default: hide both banners */
+    .ad-728x90 { display: none; }
+    .ad-320x50 { display: none; }
+
+    /* Desktop & Tablet (≥ 768px) → show 728x90 */
+    @media (min-width: 768px) {
+      .ad-728x90 { display: block; }
+    }
+
+    /* Mobile only (< 768px) → show 320x50 */
+    @media (max-width: 767px) {
+      .ad-320x50 { display: block; }
+    }
+
+    /* Bottom vertical native ads (mobile + tablet - ≤1024px) */
+    .bottom-vertical-ads {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      margin: 40px auto 20px;
+      max-width: 100%;
+    }
+    .bottom-vertical-ads .ad-item {
+      width: 100%;
+      min-height: 100px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    @media (max-width: 1024px) {
+      .bottom-vertical-ads { display: flex; }
+    }
+
+    /* Rest of your styles */
+    h1 { text-align:center; color:var(--primary); margin:20px 0 0 0; font-size: clamp(1.8rem,6vw,2.4rem); }
+    #title-display { text-align:center; font-size:clamp(1.3rem,5vw,1.7rem); margin:20px 0 0 0; color:#fff; font-weight:500; min-height:2.5em; }
+    #how-to-section { margin:30px 0 40px; text-align:center; }
+    #how-to-heading { font-size:clamp(1.2rem,4.5vw,1.4rem); margin-bottom:20px; color:var(--primary); }
+    #how-to-instructions {
+      background:var(--card-bg);
+      border-radius:12px;
+      padding:24px;
+      text-align:left;
+      font-size:clamp(0.95rem,3.2vw,1.05rem);
+    }
+    #how-to-instructions ol, #how-to-instructions ul { padding-left:24px; margin:15px 0; }
+    #how-to-instructions li { margin-bottom:12px; }
+    #how-to-instructions .highlight { color:#ffcc00; font-weight:600; }
+    #button-container { display:flex; flex-direction:column; gap:16px; margin:30px 0; }
+    .btn {
+      height:72px;
+      border:none;
+      border-radius:12px;
+      font-size:clamp(1rem,4vw,1.15rem);
+      font-weight:600;
+      cursor:pointer;
+      color:white;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:4px;
+      transition:all 0.25s;
+    }
+    .btn-primary { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); }
+    .btn-primary:hover:not(.disabled):not(.checking) { transform:translateY(-2px); box-shadow:0 8px 20px rgba(11,163,96,0.3); }
+    .btn.disabled { background:#444; cursor:not-allowed; opacity:0.6; }
+    .checking { background:#555 !important; cursor:wait; }
+    .error-btn { background:var(--danger) !important; }
+    .success { background:#2d6a4f !important; cursor:default; }
+    #finalUnlockBtn {
+      display:none;
+      background:linear-gradient(135deg,#fc38ae,#ce4b99);
+      height:80px;
+      font-size:clamp(1.1rem,4.5vw,1.3rem);
+    }
+    #error-message, #adblock-warning {
+      display:none;
+      text-align:center;
+      color:var(--danger);
+      font-size:clamp(1.1rem,4vw,1.3rem);
+      padding:40px 20px;
+      background:rgba(230,57,70,0.12);
+      border:2px solid var(--danger);
+      border-radius:12px;
+      margin:40px auto;
+      max-width:540px;
+    }
+    #adblock-warning button {
+      margin-top:20px;
+      padding:12px 30px;
+      font-size:1.1rem;
+      background:var(--primary);
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    @media (max-width:480px) {
+      body { padding:15px 10px; }
+      .btn { height:64px; font-size:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1 id="title-display">Loading...</h1>
+
+    <!-- Top banner ad area -->
+    <div class="top-ad-container">
+      <!-- Desktop & Tablet: 728x90 -->
+      <div class="ad-728x90">
+        <script>
+          atOptions = {
+            'key' : '001a3d3ef6e93c6a44d0b84604049a79',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://exasperatebubblyorthodox.com/001a3d3ef6e93c6a44d0b84604049a79/invoke.js"></script>
+      </div>
+
+      <!-- Mobile: 320x50 -->
+      <div class="ad-320x50">
+        <script>
+          atOptions = {
+            'key' : 'f86cec05dfb3d2e32c0ae6d225f9e2f3',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://exasperatebubblyorthodox.com/f86cec05dfb3d2e32c0ae6d225f9e2f3/invoke.js"></script>
+      </div>
+    </div>
+
+    <!-- <h1> වීඩියෝව Unlock කරගන්න</h1> -->
+
+    
+
+    <div id="how-to-section">
+      <h2 id="how-to-heading">වීඩියෝ Download කරන්නෙ කොහොමද?</h2>
+      <div id="how-to-instructions">
+        <ol>
+          <li><strong>පියවර 1</strong> Button එක Click කරන්න.</li>
+          <li><strong>පියවර 2</strong> Button එක Click කරන්න.</li>
+          <li>පියවර දෙකම සම්පූර්ණ නම් <strong>Download Button එක Unlock වේ.</li>
+        </ol>
+        <ul>
+          <li>සෑම පියවරකදිම <span class="highlight">අවම තත්පර 5ක් රැඳී සිටීම අනිවාර්යයි</span>.</li>
+          <li><span class="highlight">AdBlock Disable</span> කිරීම අනිවාර්යයි.</li>
+          <li>Popup window එකක් show උනොත් අනිවාර්යයෙන් <span class="highlight">Allow</span> / <span class="highlight">Always Show</span> කරන්න.</li>
+        </ul> 
+        
+      </div>
+    </div>
+
+    <div id="button-container">
+      <button id="btn1" class="btn btn-primary">
+        <span>🔓 පියවර 01</span>
+        <span>ආරම්භ කරන්න</span>
+      </button>
+      <button id="btn2" class="btn btn-primary disabled">
+        <span>🔓 පියවර 02</span>
+        <span>ඊළඟ පියවර</span>
+      </button>
+      <button id="finalUnlockBtn" class="btn">
+        <span>Download Now!</span>
+      </button>
+    </div>
+
+    <!-- Bottom vertical native ads (mobile + tablet) -->
+    <div class="bottom-vertical-ads">
+      <div class="ad-item">
+        <script async="async" data-cfasync="false" src="https://exasperatebubblyorthodox.com/e288e27a370c8e9e555ae2822c3f8be1/invoke.js"></script>
+        <div id="container-e288e27a370c8e9e555ae2822c3f8be1"></div>
+      </div>
+    </div>
+
+    <div id="error-message">
+      <h2>⚠️ Video Not Found</h2>
+      <p id="error-text">වැරදි ID එකක් හෝ URL එකකින් ආවා වගේ පේනවා.</p>
+    </div>
+
+    <div id="adblock-warning">
+      <h2>⚠️ Ad Blocker හෝ Privacy Protection සක්‍රියයි!</h2>
+      <p>මේ page එක properly load වෙන්න නම් Ad Blocker disable කරලා refresh කරන්න.</p>
+      <button onclick="location.reload()">Refresh කරන්න</button>
+    </div>
+  </div>
+
+  <script>
+    // ──── Configuration ────
+    const JSON_FILE = 'data.json';
+    const requiredSeconds = 5;
+
+    // ──── Global state ────
+    let videoData = null;
+    let clickTime = 0;
+    let activeBtnId = null;
+    let nextBtnId = null;
+    let isChecking = false;
+    let timerInterval = null;
+
+    const part1 = "ඔයා හිටියේ තත්පර ";
+    const part2 = " යි!\nකරුණාකර තත්පර 5ක් රැඳිලා සිටින්න.";
+    const popupErrorMsg = "⚠️ Popup Blocked!\n\nBrowser settings → Pop-ups and redirects → Allow කරලා ආයෙ උත්සාහ කරන්න.";
+
+    // ──── Load JSON & find by ID ────
+    async function loadAndFindVideo() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      if (!id) {
+        showError("ID parameter එක URL එකේ නැහැ (උදා: ?id=123vPs)");
+        return;
+      }
+
+      try {
+        const response = await fetch(JSON_FILE);
+        if (!response.ok) throw new Error("JSON file load වෙන්නේ නැහැ");
+        const data = await response.json();
+
+        if (!Array.isArray(data)) throw new Error("JSON එක array එකක් නෙමෙයි");
+
+        videoData = data.find(item => item.id === id);
+
+        if (!videoData || !videoData.title || !videoData.download_url) {
+          showError("ID එකට අදාළ වීඩියෝව සොයාගත නොහැකි විය.");
+          return;
+        }
+
+        document.getElementById('title-display').innerHTML = `🎬 ${videoData.title}`;
+        document.getElementById('title-display').style.color = '#ffffff';
+
+      } catch (err) {
+        showError("Data load කරද්දි ගැටලුවක්: " + err.message);
+      }
+    }
+
+    function showError(msg) {
+      document.getElementById('button-container').style.display = 'none';
+      document.getElementById('how-to-section').style.display = 'none';
+      document.getElementById('error-message').style.display = 'block';
+      document.getElementById('error-text').innerText = msg;
+      document.getElementById('title-display').innerHTML = "Error";
+    }
+
+    // ──── Adblock Detection ────
+    function detectAdblock(callback) {
+      const bait = document.createElement('div');
+      bait.innerHTML = '&nbsp;';
+      bait.className = 'adsbygoogle google_ad google-ad-container text-ad banner-ad';
+      bait.style.cssText = 'height:1px; position:absolute; top:-9999px; width:300px;';
+      document.body.appendChild(bait);
+      setTimeout(() => {
+        const isHidden = (
+          bait.offsetHeight === 0 ||
+          bait.offsetParent === null ||
+          window.getComputedStyle(bait).display === 'none' ||
+          bait.getBoundingClientRect().height < 1
+        );
+        document.body.removeChild(bait);
+        callback(isHidden);
+      }, 800);
+    }
+
+    // ──── Button logic ────
+    function handleStep(key, currentId, nextId) {
+      checkTimeAndUnlock(currentId, nextId, links[key]);
+    }
+
+    function checkTimeAndUnlock(currentId, nextId, url) {
+      const newWin = window.open(url, '_blank');
+      if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
+        alert(popupErrorMsg);
+        return;
+      }
+      clickTime = Date.now();
+      activeBtnId = currentId;
+      nextBtnId = nextId;
+      isChecking = true;
+
+      const btn = document.getElementById(currentId);
+      btn.classList.add('checking');
+      btn.classList.remove('error-btn');
+
+      let timeLeft = requiredSeconds;
+      btn.innerHTML = `<span>⏳ Checking...</span><span>තත්පර ${timeLeft}ක සිටින්න</span>`;
+
+      timerInterval && clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft >= 0) {
+          btn.innerHTML = `<span>⏳ Checking...</span><span>තත්පර ${timeLeft}ක සිටින්න</span>`;
+        }
+      }, 1000);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'visible' && isChecking) {
+        const timeSpent = (Date.now() - clickTime) / 1000;
+        clearInterval(timerInterval);
+
+        if (timeSpent < requiredSeconds) {
+          isChecking = false;
+          alert(part1 + Math.floor(timeSpent) + part2);
+          const btn = document.getElementById(activeBtnId);
+          btn.classList.remove('checking');
+          btn.classList.add('error-btn');
+          btn.innerHTML = `<span>⚠️ අසාර්ථකයි!</span><span>නැවත click කරන්න</span>`;
+        } else {
+          isChecking = false;
+          markSuccess(activeBtnId, nextBtnId);
+        }
+      }
+    });
+
+    function markSuccess(currentId, nextId) {
+      const btn = document.getElementById(currentId);
+      btn.classList.add('success', 'disabled');
+      btn.innerHTML = `<span>✅ සම්පූර්ණයි</span><span>Done!</span>`;
+
+      if (nextId === 'final') {
+        document.getElementById('finalUnlockBtn').style.display = 'flex';
+      } else {
+        const nextBtn = document.getElementById(nextId);
+        nextBtn.classList.remove('disabled');
+        const step = nextId.replace('btn', '');
+        nextBtn.innerHTML = `<span>🔓 පියවර 0${step}</span><span>දැන් විවෘත කරන්න</span>`;
+      }
+    }
+
+    // Final download
+    document.getElementById('finalUnlockBtn').onclick = () => {
+      if (videoData && videoData.download_url) {
+        window.location.href = videoData.download_url;
+      } else {
+        alert("Download link එක හොයාගන්න බැරි වුණා");
+      }
+    };
+
+    // ──── Init ────
+    window.addEventListener('load', () => {
+      detectAdblock((blocked) => {
+        if (blocked) {
+          document.getElementById('button-container').style.display = 'none';
+          document.getElementById('how-to-section').style.display = 'none';
+          document.getElementById('adblock-warning').style.display = 'block';
+          return;
+        }
+        loadAndFindVideo();
+      });
+    });
+
+    // Button listeners
+    document.getElementById('btn1').onclick = () => {
+      if (!document.getElementById('btn1').classList.contains('disabled') &&
+          !document.getElementById('btn1').classList.contains('checking')) {
+        handleStep('step1', 'btn1', 'btn2');
+      }
+    };
+
+    document.getElementById('btn2').onclick = () => {
+      if (!document.getElementById('btn2').classList.contains('disabled') &&
+          !document.getElementById('btn2').classList.contains('checking')) {
+        handleStep('step2', 'btn2', 'final');
+      }
+    };
+
+    // Original step links
+    const links = {
+      step1: "https://otieu.com/4/9263262",
+      step2: "https://otieu.com/4/9250881"
+    };
+  </script>
+</body>
+</html>
